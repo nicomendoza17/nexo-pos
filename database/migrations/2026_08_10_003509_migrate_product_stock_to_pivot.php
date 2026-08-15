@@ -11,7 +11,13 @@ return new class extends Migration
             ?? DB::table('warehouses')->value('id');
 
         if (!$defaultWarehouse) {
-            throw new \RuntimeException('No hay almacenes creados. Ejecuta WarehouseSeeder antes de esta migración.');
+            // Creamos un almacén por defecto automáticamente para que la migración no falle
+            $defaultWarehouse = DB::table('warehouses')->insertGetId([
+                'name' => 'Almacén Principal',
+                'is_default' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
 
         // Todo el stock actual se asigna al almacén principal
