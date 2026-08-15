@@ -38,7 +38,6 @@ class ProductSeeder extends Seeder
                 [
                     'category_id' => $catIds[$p['category']],
                     'name' => $p['name'],
-                    'emoji' => $p['emoji'],
                     'price' => $p['price'],
                     'stock' => $p['stock'],
                     'is_active' => true,
